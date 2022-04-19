@@ -5,7 +5,7 @@ import {
   FlatList,
 } from "react-native";
 import { useState } from "react";
-import ToDoItem from "./components/ToDoItem";
+import ToDoDisplay from "./components/ToDoDisplay";
 import ToDoInput from "./components/ToDoInput";
 
 export default function App() {
@@ -29,11 +29,7 @@ export default function App() {
         <ToDoInput onAddToDo={addToDoHandler} />
       </View>
       <View style={styles.toDoItemsContainer}>
-        <FlatList
-          data={toDoItems}
-          keyExtractor={(item) => item.id}
-          renderItem={(itemData) => <ToDoItem text={itemData.item.text} />}
-        />
+        <ToDoDisplay data={toDoItems} />
       </View>
     </View>
   );
