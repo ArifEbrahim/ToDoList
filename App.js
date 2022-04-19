@@ -1,15 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 import { useState } from "react";
 import ToDoDisplay from "./components/ToDoDisplay";
 import ToDoInput from "./components/ToDoInput";
 
 export default function App() {
   const [toDoItems, setToDoItems] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const toDoInputHandler = (enteredText) => {
-    setEnteredToDoText(enteredText);
-  };
+  const toggleModalVisible = () => setIsModalVisible(!isModalVisible);
 
   const addToDoHandler = (enteredToDoText) => {
     const updatedItems = [
@@ -17,6 +16,7 @@ export default function App() {
       { text: enteredToDoText, id: Date.now() },
     ];
     setToDoItems(updatedItems);
+    toggleModalVisible();
   };
 
   const deleteToDoHandler = (id) => {
@@ -26,9 +26,16 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <ToDoInput onAddToDo={addToDoHandler} />
-      </View>
+      <Button
+        title={"Add new goal"}
+        color={"#707370"}
+        onPress={toggleModalVisible}
+      />
+      <ToDoInput
+        onAddToDo={addToDoHandler}
+        showModal={isModalVisible}
+        onCancel={toggleModalVisible}
+      />
       <View style={styles.toDoItemsContainer}>
         <ToDoDisplay data={toDoItems} onDeleteToDo={deleteToDoHandler} />
       </View>
@@ -41,15 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-  },
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 24,
-    borderBottomColor: "darkgrey",
-    borderBottomWidth: 1,
+    backgroundColor: "#B0B7C0",
   },
   toDoItemsContainer: {
     flex: 5,
