@@ -8,6 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import { useState } from "react";
+import ToDoItem from "./components/ToDoItem";
 
 export default function App() {
   const [enteredToDoText, setEnteredToDoText] = useState("");
@@ -35,13 +36,7 @@ export default function App() {
         <FlatList
           data={toDoItems}
           keyExtractor={(item) => item.id}
-          renderItem={(itemData) => {
-            return (
-              <View>
-                <Text>{itemData.item.text}</Text>
-              </View>
-            );
-          }}
+          renderItem={(itemData) => <ToDoItem text={itemData.item.text} />}
         />
       </View>
     </View>
