@@ -1,24 +1,21 @@
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
-  Text,
   View,
-  TextInput,
-  Button,
   FlatList,
 } from "react-native";
 import { useState } from "react";
 import ToDoItem from "./components/ToDoItem";
+import ToDoInput from "./components/ToDoInput";
 
 export default function App() {
-  const [enteredToDoText, setEnteredToDoText] = useState("");
   const [toDoItems, setToDoItems] = useState([]);
 
   const toDoInputHandler = (enteredText) => {
     setEnteredToDoText(enteredText);
   };
 
-  const addToDoHandler = () => {
+  const addToDoHandler = (enteredToDoText) => {
     const updatedItems = [
       ...toDoItems,
       { text: enteredToDoText, id: Date.now() },
@@ -29,8 +26,7 @@ export default function App() {
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput placeholder="Your to-do" onChangeText={toDoInputHandler} />
-        <Button title="Add to-do" onPress={addToDoHandler} />
+        <ToDoInput onAddToDo={addToDoHandler} />
       </View>
       <View style={styles.toDoItemsContainer}>
         <FlatList
