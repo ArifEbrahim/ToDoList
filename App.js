@@ -1,9 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import { useState } from "react";
 import ToDoDisplay from "./components/ToDoDisplay";
 import ToDoInput from "./components/ToDoInput";
@@ -23,13 +19,18 @@ export default function App() {
     setToDoItems(updatedItems);
   };
 
+  const deleteToDoHandler = (id) => {
+    const updatedItems = toDoItems.filter((item) => item.id !== id);
+    setToDoItems(updatedItems);
+  };
+
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
         <ToDoInput onAddToDo={addToDoHandler} />
       </View>
       <View style={styles.toDoItemsContainer}>
-        <ToDoDisplay data={toDoItems} />
+        <ToDoDisplay data={toDoItems} onDeleteToDo={deleteToDoHandler} />
       </View>
     </View>
   );
