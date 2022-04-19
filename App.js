@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  FlatList,
+} from "react-native";
 import { useState } from "react";
 
 export default function App() {
@@ -11,7 +18,10 @@ export default function App() {
   };
 
   const addToDoHandler = () => {
-    const updatedItems = [...toDoItems, enteredToDoText];
+    const updatedItems = [
+      ...toDoItems,
+      { text: enteredToDoText, id: Date.now() },
+    ];
     setToDoItems(updatedItems);
   };
 
@@ -22,7 +32,17 @@ export default function App() {
         <Button title="Add to-do" onPress={addToDoHandler} />
       </View>
       <View style={styles.toDoItemsContainer}>
-        <Text>List of to-do</Text>
+        <FlatList
+          data={toDoItems}
+          keyExtractor={(item) => item.id}
+          renderItem={(itemData) => {
+            return (
+              <View>
+                <Text>{itemData.item.text}</Text>
+              </View>
+            );
+          }}
+        />
       </View>
     </View>
   );
@@ -36,14 +56,14 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 24,
-    borderBottomColor: 'darkgrey',
-    borderBottomWidth: 1
+    borderBottomColor: "darkgrey",
+    borderBottomWidth: 1,
   },
   toDoItemsContainer: {
-    flex: 5
+    flex: 5,
   },
 });
