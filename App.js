@@ -25,10 +25,12 @@ export default function App() {
   };
 
   return (
+    <>
+    <StatusBar style={"light"}/>
     <View style={styles.appContainer}>
       <Button
-        title={"Add new goal"}
-        color={"#707370"}
+        title={"Add to-do"}
+        color={"#D4F1F4"}
         onPress={toggleModalVisible}
       />
       <ToDoInput
@@ -40,6 +42,7 @@ export default function App() {
         <ToDoDisplay data={toDoItems} onDeleteToDo={deleteToDoHandler} />
       </View>
     </View>
+    </>
   );
 }
 
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-    backgroundColor: "#B0B7C0",
+    backgroundColor: "#05445E",
   },
   toDoItemsContainer: {
     flex: 5,

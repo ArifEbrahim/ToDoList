@@ -34,10 +34,10 @@ export default function ToDoInput(props) {
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={props.onCancel} color="#707370" />
+            <Button title="Cancel" onPress={props.onCancel} color="#189AB4" />
           </View>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addToDoHandler} color="#171710" />
+            <Button title="Add Goal" onPress={addToDoHandler} color="#D4F1F4" />
           </View>
         </View>
       </View>
@@ -51,16 +51,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#B0B7C0",
+    backgroundColor: "#05445E",
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "white",
-    backgroundColor: "white",
+    borderColor: "#D4F1F4",
+    backgroundColor: "#D4F1F4",
     width: "100%",
     padding: 8,
     borderRadius: 6,
-    color: "#171710",
+    color: "#05445E",
     padding: 16,
   },
   buttonContainer: {

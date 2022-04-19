@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
   toDoItem: {
     margin: 8,
     padding: 8,
-    backgroundColor: "#595e60",
+    backgroundColor: "#189AB4",
     borderRadius: 6,
   },
   pressedItem: {
     opacity: 0.5,
   },
   toDoText: {
-    color: "ivory",
+    color: "#D4F1F4",
   },
 });
